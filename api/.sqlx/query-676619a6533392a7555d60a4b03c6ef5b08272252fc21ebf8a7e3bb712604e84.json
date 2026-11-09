@@ -1,0 +1,95 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT m.id, m.name, m.description, m.created_at, m.last_run_at, m.players,\n               (SELECT count(*) FROM runs WHERE map_id = m.id AND invalidated_at IS NULL) AS \"runs!\"\n        FROM maps m WHERE m.name = $1\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "id"
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "name"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "description"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "created_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "created_at"
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "last_run_at",
+        "type_info": "Timestamptz",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "last_run_at"
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "players",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "maps",
+            "name": "players"
+          }
+        }
+      },
+      {
+        "ordinal": 6,
+        "name": "runs!",
+        "type_info": "Int8",
+        "origin": "Expression"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      null
+    ]
+  },
+  "hash": "676619a6533392a7555d60a4b03c6ef5b08272252fc21ebf8a7e3bb712604e84"
+}
